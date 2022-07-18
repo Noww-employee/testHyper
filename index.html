@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hyperverge Test</title>
+    <script src="https://hv-camera-web-sg.s3-ap-southeast-1.amazonaws.com/hyperverge-web-sdk@5.1.1/src/sdk.min.js"></script>
+    <script>
+      
+      function onKYCButtonClick() {
+                var token = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6InlsYnVjYiIsImhhc2giOiJjYzRmZmRmZWY5YWZjNTI5MjhmY2Y5OTYzYmRiOTQ0NTJhZjFkZTVjMmJjOTQ1YTI2NTZhOWFiZWQ2YTgxYTQ4IiwiaWF0IjoxNjU4MTQ4NDk3LCJleHAiOjE2NTgxNTQ0OTcsImp0aSI6ImY2NTczNGQ4LWRkZmItNDQ0Ny1iMmI3LTc2NjM0OTFiNzBhYiJ9.nAgzigtLnneG3lSES6TwfnZvI2ulhEFF_5mzZet21psI52oCfyCFfyg7bubYplbL2OmvEgikncAiO9OZ_Wv_zr2oF1e-w8qoSMD24mhgN2zrTxN0yrFKZ5eUZ9yMUaXi_knrnL50PtpzBQ8JhCN0hqrUQV85MMRs5_Ktblxt3j8"
+        // console.log(token);
+        const hyperKycConfig = new window.HyperKycConfig(token, "workflow-aviral-test", "546689a4-9a81-4wfdwe6-a6b1-17d9be536dba");
+
+        const handler = (HyperKycResult) => {
+            console.log(HyperKycResult);
+            if(HyperKycResult.Cancelled){ //User cancelled
+                console.log(HyperKycResult);
+            }else if(HyperKycResult.Failure){ // failure
+                console.log(HyperKycResult);
+            }else if(HyperKycResult.Success){ // success
+                console.log(HyperKycResult);
+            }
+        }
+        window.HyperKYCModule.launch(hyperKycConfig, handler);
+      }
+    </script>
+  </head>
+
+  <body>
+    <button onclick="onKYCButtonClick()">Click for KYC</button>
+  </body>
+</html>
