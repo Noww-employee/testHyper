@@ -53,11 +53,11 @@
 
       function onKYCButtonClick() {
         var token = getAccessToken()
-        console.log(token);
+        // console.log(token);
         const hyperKycConfig = new window.HyperKycConfig(token, "noww-aadhaar-pan", uuidv4());
 
         const handler = (HyperKycResult) => {
-          // console.log(HyperKycResult);
+            console.log(HyperKycResult);
             if(HyperKycResult.Cancelled){ //User cancelled
                 alert("User Cancelled");
             }else if(HyperKycResult.Failure){ // failure
