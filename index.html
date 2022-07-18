@@ -14,7 +14,7 @@
         try
         { 
           let xhr = new XMLHttpRequest();
-          xhr.open("POST", "https://auth.hyperverge.co/login", false);
+          xhr.open("POST", "https://cors-anywhere.herokuapp.com/https://auth.hyperverge.co/login", false);
           xhr.setRequestHeader("Accept", "*/*");
           xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
           // xhr.setRequestHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
@@ -57,7 +57,7 @@
         const hyperKycConfig = new window.HyperKycConfig(token, "noww-aadhaar-pan", uuidv4());
 
         const handler = (HyperKycResult) => {
-          console.log(HyperKycResult);
+          // console.log(HyperKycResult);
             if(HyperKycResult.Cancelled){ //User cancelled
                 alert("User Cancelled");
             }else if(HyperKycResult.Failure){ // failure
