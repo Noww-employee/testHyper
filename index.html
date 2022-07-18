@@ -1,25 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hyperverge Test</title>
     <script src="https://hv-camera-web-sg.s3-ap-southeast-1.amazonaws.com/hyperverge-web-sdk@5.1.1/src/sdk.min.js"></script>
     <script>
-      
+      function uuidv4() {
+        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+          (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        );
+      }
+      function getAccessToken() {
+        var accessToken = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjYybTc4ZiIsImhhc2giOiJkZTA4ZDQ0ZmFiOWVhMjc0MGFjOGVmZDI4YjRkYzYzNDFjNzE0ODQ0MDY5MWFjZTY0ZWQxYmE0YzI1NjJiZjA5IiwiaWF0IjoxNjU4MTU1MTg3LCJleHAiOjE2NTgxODUxODcsImp0aSI6IjU5Mzg5MTExLWE1YWUtNDQzZC05ZDhmLWQyMWM3YWFiZWZlZCJ9.kuj4_31_-oOtl5QeW-LGlOSJWROiL_Xw9y-lBWbU6xV8iN1njtbXMVsjgrU-xxtGi1wIteqLBCjQUOZgRyn0OUQ1dR7sSXqw4E2m00UaIc7rksveWRNeZWOrRR2sFv2GQUW3mE9onN__3k21WC6gKQakBQl9KIYul3JQ4HRdY3U";
+        try
+        { 
+          let xhr = new XMLHttpRequest();
+          xhr.open("POST", "https://auth.hyperverge.co/login", false);
+          xhr.setRequestHeader("Accept", "*/*");
+          xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+          // xhr.setRequestHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, PUT, DELETE, OPTIONS");
+          // xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token");
+          xhr.setRequestHeader("Content-Type", "application/json");
+
+          xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+              console.log(xhr.status);
+              // console.log(xhr.responseText);
+              var jsonResponse = JSON.parse(xhr.responseText);
+              // console.log(jsonResponse);
+              // console.log(jsonResponse.result);
+              // console.log(jsonResponse.result.token);
+              accessToken = jsonResponse.result.token;
+            }};
+
+          let data = `{
+              "appId": "62m78f",
+              "appKey": "7apll8figbigo7gd1196",
+              "expiry": 30000
+          }`;
+
+          xhr.send(data);
+          return accessToken;
+        } 
+        catch(err)
+        {
+          console.log(err);
+        } 
+        finally
+        {
+          return accessToken;
+        }
+      }
+
       function onKYCButtonClick() {
-                var token = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6InlsYnVjYiIsImhhc2giOiJjYzRmZmRmZWY5YWZjNTI5MjhmY2Y5OTYzYmRiOTQ0NTJhZjFkZTVjMmJjOTQ1YTI2NTZhOWFiZWQ2YTgxYTQ4IiwiaWF0IjoxNjU4MTQ4NDk3LCJleHAiOjE2NTgxNTQ0OTcsImp0aSI6ImY2NTczNGQ4LWRkZmItNDQ0Ny1iMmI3LTc2NjM0OTFiNzBhYiJ9.nAgzigtLnneG3lSES6TwfnZvI2ulhEFF_5mzZet21psI52oCfyCFfyg7bubYplbL2OmvEgikncAiO9OZ_Wv_zr2oF1e-w8qoSMD24mhgN2zrTxN0yrFKZ5eUZ9yMUaXi_knrnL50PtpzBQ8JhCN0hqrUQV85MMRs5_Ktblxt3j8"
-        // console.log(token);
-        const hyperKycConfig = new window.HyperKycConfig(token, "workflow-aviral-test", "546689a4-9a81-4wfdwe6-a6b1-17d9be536dba");
+        var token = getAccessToken()
+        console.log(token);
+        const hyperKycConfig = new window.HyperKycConfig(token, "noww-aadhaar-pan", uuidv4());
 
         const handler = (HyperKycResult) => {
-            console.log(HyperKycResult);
+          console.log(HyperKycResult);
             if(HyperKycResult.Cancelled){ //User cancelled
-                console.log(HyperKycResult);
+                alert("User Cancelled");
             }else if(HyperKycResult.Failure){ // failure
-                console.log(HyperKycResult);
+                
+                alert("Error Occured");
             }else if(HyperKycResult.Success){ // success
-                console.log(HyperKycResult);
+                alert("Successful Implementation");
+            }
+        }
+        window.HyperKYCModule.launch(hyperKycConfig, handler);
+      }
+      function onBankButtonClick() {
+        var token = getAccessToken()
+        // console.log(token);
+        const hyperKycConfig = new window.HyperKycConfig(token, "noww-penny-drop", uuidv4());
+
+        const handler = (HyperKycResult) => {
+            if(HyperKycResult.Cancelled){ //User cancelled
+                alert("User Cancelled");
+            }else if(HyperKycResult.Failure){ // failure
+                
+                alert("Error Occured");
+            }else if(HyperKycResult.Success){ // success
+                alert("Successful Implementation");
             }
         }
         window.HyperKYCModule.launch(hyperKycConfig, handler);
@@ -28,6 +90,11 @@
   </head>
 
   <body>
+    <h1>My First Heading</h1>
+    <p>My first paragraph.</p>
+    <p>Please go to <a href="https://cors-anywhere.herokuapp.com/corsdemo">https://cors-anywhere.herokuapp.com/corsdemo</a> and Click on request temporary access for if facing any error</p>
     <button onclick="onKYCButtonClick()">Click for KYC</button>
+    <p></p>
+    <!-- <button onclick="onBankButtonClick()">Click for pennyDrop - not working</button> -->
   </body>
 </html>
