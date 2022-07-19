@@ -10,7 +10,7 @@
         );
       }
       function getAccessToken() {
-        var accessToken = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjYybTc4ZiIsImhhc2giOiJkZTA4ZDQ0ZmFiOWVhMjc0MGFjOGVmZDI4YjRkYzYzNDFjNzE0ODQ0MDY5MWFjZTY0ZWQxYmE0YzI1NjJiZjA5IiwiaWF0IjoxNjU4MjI3NDczLCJleHAiOjE2NTgyMjc3NzMsImp0aSI6ImViMjM5YWZmLWU3NTQtNDEwOC1iZGUwLWNiNGRkZjk5Y2ZjNCJ9.tXzG7xZHATJAzh6d2yV_d_XcM6lbFH5fcCowv1SbUG_JVo5bA7z7PUnd1J8Rat5jdDDvw9Cw_4J-8HZpl8X7gRsZQAOQVrsIwt2_coQP6FbKXan3aSAepJNr612OkEz6ktCPIlliDlTT4i4vbTGyqV_6uQ4Gwpezdnny5irOFJ4";
+        var accessToken = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjYybTc4ZiIsImhhc2giOiJkZTA4ZDQ0ZmFiOWVhMjc0MGFjOGVmZDI4YjRkYzYzNDFjNzE0ODQ0MDY5MWFjZTY0ZWQxYmE0YzI1NjJiZjA5IiwiaWF0IjoxNjU4MjI3NTkxLCJleHAiOjE2NTgyNTc1OTEsImp0aSI6IjBiMjA5MDljLTFmYzAtNGMzMy04MzBlLWQzYmU5MDBiNDAzZCJ9.SksnS6CrN5-hkfeA1atZp5gH0Hg70qTPhY0ul34t_xyMef52KbJwJZEDvjpw22AcK32-9dxst5dWIw3ESuH4y9h7bplGRJ3t0RtuxgYrGut_kgBhxiN3J72VkkQ2IZUX0emCnoJmEHA2mn2jVu2WzgAVYSqFUpmvDYMbb7KGSPk";
         try
         { 
           let xhr = new XMLHttpRequest();
@@ -53,7 +53,7 @@
 
       function onKYCButtonClick() {
         var token = getAccessToken()
-        // console.log(token);
+        console.log(token);
         const hyperKycConfig = new window.HyperKycConfig(token, "noww-penny-drop", uuidv4());
 
         const handler = (HyperKycResult) => {
