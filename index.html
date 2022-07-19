@@ -72,8 +72,14 @@
       function onBankButtonClick() {
         var token = getAccessToken()
         // console.log(token);
-        const hyperKycConfig = new window.HyperKycConfig(token, "noww-penny-drop", uuidv4());
+        
+        const customInputs = new Map([
+  ["accountNumber", 50100202863710],
+  ["ifsc", "HDFC0000075"]
+]);
 
+        const hyperKycConfig = new window.HyperKycConfig(token, "noww-penny-drop", uuidv4());
+        hyperKycConfig.setInputs(inputs: customInputs);
         const handler = (HyperKycResult) => {
             if(HyperKycResult.Cancelled){ //User cancelled
                 alert("User Cancelled");
