@@ -10,7 +10,7 @@
         );
       }
       function getAccessToken() {
-        var accessToken = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjYybTc4ZiIsImhhc2giOiJkZTA4ZDQ0ZmFiOWVhMjc0MGFjOGVmZDI4YjRkYzYzNDFjNzE0ODQ0MDY5MWFjZTY0ZWQxYmE0YzI1NjJiZjA5IiwiaWF0IjoxNjU4MTU1MTg3LCJleHAiOjE2NTgxODUxODcsImp0aSI6IjU5Mzg5MTExLWE1YWUtNDQzZC05ZDhmLWQyMWM3YWFiZWZlZCJ9.kuj4_31_-oOtl5QeW-LGlOSJWROiL_Xw9y-lBWbU6xV8iN1njtbXMVsjgrU-xxtGi1wIteqLBCjQUOZgRyn0OUQ1dR7sSXqw4E2m00UaIc7rksveWRNeZWOrRR2sFv2GQUW3mE9onN__3k21WC6gKQakBQl9KIYul3JQ4HRdY3U";
+        var accessToken = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjYybTc4ZiIsImhhc2giOiJkZTA4ZDQ0ZmFiOWVhMjc0MGFjOGVmZDI4YjRkYzYzNDFjNzE0ODQ0MDY5MWFjZTY0ZWQxYmE0YzI1NjJiZjA5IiwiaWF0IjoxNjU4MjA5MzI1LCJleHAiOjE2NTgyMTIzMjUsImp0aSI6IjE0M2Y1ODVjLThkZjktNGU0My1iOTY4LWJlYjQ2M2Y0N2NhNyJ9.loRiI2aAFrffe1dLMo-IyIqU694qVbG9JQj9Mx4QHLsn3eEc4WElI5kd2V6LiA1k91fsdA_VfEE_zhsaC89ENNXOeioeQEZjoEJs_u-Hrbx9QJJ5usL8BVnWpZF9iLZK1qWSD9A08KxvaodYLRgxJQgHGCO_uj_hvwLVSKFdSsc";
         try
         { 
           let xhr = new XMLHttpRequest();
@@ -54,7 +54,7 @@
       function onKYCButtonClick() {
         var token = getAccessToken()
         // console.log(token);
-        const hyperKycConfig = new window.HyperKycConfig(token, "noww-aadhaar-pan", uuidv4());
+        const hyperKycConfig = new window.HyperKycConfig(token, "noww-penny-drop", uuidv4());
 
         const handler = (HyperKycResult) => {
             console.log(HyperKycResult);
