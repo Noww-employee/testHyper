@@ -10,7 +10,7 @@
         );
       }
       function getAccessToken() {
-        var accessToken = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjYybTc4ZiIsImhhc2giOiJkZTA4ZDQ0ZmFiOWVhMjc0MGFjOGVmZDI4YjRkYzYzNDFjNzE0ODQ0MDY5MWFjZTY0ZWQxYmE0YzI1NjJiZjA5IiwiaWF0IjoxNjU4MjI4MDcyLCJleHAiOjE2NTgyMzEwNzIsImp0aSI6ImYyMTY1ZmFmLTdlYzYtNGNiMi1iNzBiLTNlYjRhYjY4OGE2NCJ9.peiVdfO3s7LQARKZVJr-eQhv-Rp62Tb17Gi9MQOWRRZwVTZwXKnH6FrBFiMkoqToaYCaL5A_l5Ft7af4G6PK_-nWbLgaYA5DTl04kXfZEuAMUAIufSAR_mZrtwyIYrKcRniSXhuk9Km8_eeAS2wQrg1lyin0pKTfd3JK3osNzFA";
+        var accessToken = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjYybTc4ZiIsImhhc2giOiJkZTA4ZDQ0ZmFiOWVhMjc0MGFjOGVmZDI4YjRkYzYzNDFjNzE0ODQ0MDY5MWFjZTY0ZWQxYmE0YzI1NjJiZjA5IiwiaWF0IjoxNjU4NDkzMzQ5LCJleHAiOjE2NTg1MjMzNDksImp0aSI6IjY3ZDRlYjU0LTA5NzItNDdlMS05NzZhLWMyOWM3ZmU3MDc3ZiJ9.rwx1ug8CF61YaeoY4mw-6PEn3WNt5c5p3O3BDbrdZ4N3QBYLZ79RljhOAHqeM3KTTmaZw0Z7fybkMulza3grXA0umi_-R6l60qwrKn7__C5m4P1P-DLBP29RVyrA6pfEJIGtxutF728Y5A6JJvRIXuC0zhIn4yNzX8uNLUam8Gs";
         try
         { 
           let xhr = new XMLHttpRequest();
@@ -72,14 +72,16 @@
       function onBankButtonClick() {
         var token = getAccessToken()
         // console.log(token);
-        
-        const customInputs = new Map([
-  ["accountNumber", 50100202863710],
-  ["ifsc", "HDFC0000075"]
-]);
-
+        const constomfruits = new Map([
+          ["accountNumber", "50100202863710"],
+          ["ifsc", "HDFC0000075"]
+        ]);
         const hyperKycConfig = new window.HyperKycConfig(token, "noww-penny-drop", uuidv4());
-        hyperKycConfig.setInputs(inputs: customInputs);
+
+        console.log(hyperKycConfig);
+
+        
+        hyperKycConfig.setInputs(constomfruits);
         const handler = (HyperKycResult) => {
             if(HyperKycResult.Cancelled){ //User cancelled
                 alert("User Cancelled");
@@ -99,8 +101,8 @@
     <h1>My First Heading</h1>
     <p>My first paragraph.</p>
     <p>Please go to <a href="https://cors-anywhere.herokuapp.com/corsdemo">https://cors-anywhere.herokuapp.com/corsdemo</a> and Click on request temporary access for if facing any error</p>
-    <button onclick="onKYCButtonClick()">Click for KYC</button>
+    <button onclick="onBankButtonClick()">Click for Bank</button>
     <p></p>
-    <!-- <button onclick="onBankButtonClick()">Click for pennyDrop - not working</button> -->
+    <button onclick="onKYCButtonClick()">Click for KYC</button>
   </body>
 </html>
