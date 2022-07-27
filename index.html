@@ -10,7 +10,7 @@
         );
       }
       function getAccessToken() {
-        var accessToken = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjYybTc4ZiIsImhhc2giOiJkZTA4ZDQ0ZmFiOWVhMjc0MGFjOGVmZDI4YjRkYzYzNDFjNzE0ODQ0MDY5MWFjZTY0ZWQxYmE0YzI1NjJiZjA5IiwiaWF0IjoxNjU4ODIyNjY0LCJleHAiOjE2NTg4NTI2NjQsImp0aSI6IjE0ZDRiYWIyLWVkNWEtNDM1Ny1iZGZkLTk0NjA0NDcyNWY3YSJ9.s_zj-gavK6oeWOeLmSOTO5ycgDYiGeX-ZsDCwQ4ds8BQ7xa_CJAH5quO6bGz-Ep4IczVAeTzVASK4mzenMRZkAVhVdzKpvZKln85u-ZJTCDUYcoYeWgDSJXRSZ9SwFmKu1jKQ67r3-hKy91EXHXhA6awpvGS05m29CPUpqCOqMk";
+        var accessToken = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjYybTc4ZiIsImhhc2giOiJkZTA4ZDQ0ZmFiOWVhMjc0MGFjOGVmZDI4YjRkYzYzNDFjNzE0ODQ0MDY5MWFjZTY0ZWQxYmE0YzI1NjJiZjA5IiwiaWF0IjoxNjU4OTIyNTkxLCJleHAiOjE2NTg5NTI1OTEsImp0aSI6Ijk5Y2ZiNzE2LTA0ZDgtNDExNS04ZDA2LWEwNzRjZjliNTQ5NCJ9.EK5Rwd_VrOkjPGc3AiwUVOUdvcRnDi-iJ7pWa-IqgbRnCll-2BfXQ4Z47Mb9mZTTx8wcA8h3Tk-X7yreyiqhqqiE9JzBYXbbwNVcVPFLQuuqjQx8XwvGD5PcvtAMWIHCCTkxiazshcB6FDAQAVL3S8GV_isRcTH4So7LSkG1aJM";
         try
         { 
           let xhr = new XMLHttpRequest();
@@ -71,7 +71,7 @@
       }
       function onBankButtonClick() {
         var token = getAccessToken()
-        // console.log(token);
+        console.log(token);
         const hyperKycConfig = new window.HyperKycConfig(token, "noww-penny-drop", uuidv4());
 
         // console.log(hyperKycConfig);
@@ -82,6 +82,7 @@
                 {"accountNumber":"52210001963"}
             );
         const handler = (HyperKycResult) => {
+            console.log(HyperKycResult);
             if(HyperKycResult.Cancelled){ //User cancelled
                 alert("User Cancelled");
             }else if(HyperKycResult.Failure){ // failure
