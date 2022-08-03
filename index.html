@@ -78,8 +78,10 @@
 
         
         hyperKycConfig.setInputs(
-                {"ifsc":"SBIN0021092"},
-                {"accountNumber":"52210001963"}
+                {
+                  "ifsc":"SBIN0021092",
+                  "accountNumber":"52210001963"
+                }
             );
         const handler = (HyperKycResult) => {
             console.log(HyperKycResult);
